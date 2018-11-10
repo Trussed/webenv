@@ -1,0 +1,98 @@
+Log opened at 2018-10-11 18:56:37
+I: Connecting to configured address/port: 192.168.0.107:9001.
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/wordpress.local/index.php" language="PHP" xdebug:language_version="7.2.10" protocol_version="1.0" appid="7" idekey="www-data"><engine version="2.6.1"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2018 by Derick Rethans]]></copyright></init>
+
+<- breakpoint_list -i 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="1"></response>
+
+<- breakpoint_set -i 2 -t line -f file:///var/www/wordpress.local/index.php -n 14
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="2" id="70001"></response>
+
+<- breakpoint_list -i 3
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="3"><breakpoint type="line" filename="file:///var/www/wordpress.local/index.php" lineno="14" state="enabled" hit_count="0" hit_value="0" id="70001"></breakpoint></response>
+
+<- breakpoint_list -i 4
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="4"><breakpoint type="line" filename="file:///var/www/wordpress.local/index.php" lineno="14" state="enabled" hit_count="0" hit_value="0" id="70001"></breakpoint></response>
+
+<- run -i 5
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="5" status="break" reason="ok"><xdebug:message filename="file:///var/www/wordpress.local/index.php" lineno="14"></xdebug:message></response>
+
+<- stack_get -i 6
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="6"><stack where="{main}" level="0" type="file" filename="file:///var/www/wordpress.local/index.php" lineno="14"></stack></response>
+
+<- context_names -i 7 -d 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_names" transaction_id="7"><context name="Locals" id="0"></context><context name="Superglobals" id="1"></context><context name="User defined constants" id="2"></context></response>
+
+<- context_get -i 8 -d 0 -c 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_get" transaction_id="8" context="0"><property name="$test" fullname="$test" type="uninitialized"></property></response>
+
+<- step_over -i 9
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="step_over" transaction_id="9" status="break" reason="ok"><xdebug:message filename="file:///var/www/wordpress.local/index.php" lineno="15"></xdebug:message></response>
+
+<- stack_get -i 10
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="10"><stack where="{main}" level="0" type="file" filename="file:///var/www/wordpress.local/index.php" lineno="15"></stack></response>
+
+<- context_names -i 11 -d 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_names" transaction_id="11"><context name="Locals" id="0"></context><context name="Superglobals" id="1"></context><context name="User defined constants" id="2"></context></response>
+
+<- context_get -i 12 -d 0 -c 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_get" transaction_id="12" context="0"><property name="$test" fullname="$test" type="string" size="4" encoding="base64"><![CDATA[dGVzdA==]]></property></response>
+
+<- step_over -i 13
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="step_over" transaction_id="13" status="break" reason="ok"><xdebug:message filename="file:///var/www/wordpress.local/index.php" lineno="18"></xdebug:message></response>
+
+<- stack_get -i 14
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="14"><stack where="{main}" level="0" type="file" filename="file:///var/www/wordpress.local/index.php" lineno="18"></stack></response>
+
+<- context_names -i 15 -d 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_names" transaction_id="15"><context name="Locals" id="0"></context><context name="Superglobals" id="1"></context><context name="User defined constants" id="2"></context></response>
+
+<- context_get -i 16 -d 0 -c 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_get" transaction_id="16" context="0"><property name="$test" fullname="$test" type="string" size="4" encoding="base64"><![CDATA[dGVzdA==]]></property></response>
+
+<- run -i 17
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="17" status="stopping" reason="ok"></response>
+
+<- stop -i 18
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stop" transaction_id="18" status="stopped" reason="ok"></response>
+
+Log closed at 2018-10-11 18:56:46
+
+Log opened at 2018-10-11 18:56:46
+I: Connecting to configured address/port: 192.168.0.107:9001.
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/wordpress.local/index.php" language="PHP" xdebug:language_version="7.2.10" protocol_version="1.0" appid="8" idekey="www-data"><engine version="2.6.1"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2018 by Derick Rethans]]></copyright></init>
+
+<- breakpoint_list -i 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="1"></response>
+
+<- breakpoint_set -i 2 -t line -f file:///var/www/wordpress.local/index.php -n 14
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="2" id="80001"></response>
+
+<- breakpoint_list -i 3
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="3"><breakpoint type="line" filename="file:///var/www/wordpress.local/index.php" lineno="14" state="enabled" hit_count="0" hit_value="0" id="80001"></breakpoint></response>
+
+<- breakpoint_list -i 4
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="4"><breakpoint type="line" filename="file:///var/www/wordpress.local/index.php" lineno="14" state="enabled" hit_count="0" hit_value="0" id="80001"></breakpoint></response>
+
+<- run -i 5
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="5" status="break" reason="ok"><xdebug:message filename="file:///var/www/wordpress.local/index.php" lineno="14"></xdebug:message></response>
+
+<- stack_get -i 6
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="6"><stack where="{main}" level="0" type="file" filename="file:///var/www/wordpress.local/index.php" lineno="14"></stack></response>
+
+<- context_names -i 7 -d 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_names" transaction_id="7"><context name="Locals" id="0"></context><context name="Superglobals" id="1"></context><context name="User defined constants" id="2"></context></response>
+
+<- context_get -i 8 -d 0 -c 0
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="context_get" transaction_id="8" context="0"><property name="$test" fullname="$test" type="uninitialized"></property></response>
+
+<- run -i 9
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="9" status="stopping" reason="ok"></response>
+
+<- stop -i 10
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stop" transaction_id="10" status="stopped" reason="ok"></response>
+
+Log closed at 2018-10-11 18:56:48
+

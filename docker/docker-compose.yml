@@ -1,0 +1,97 @@
+version: "3.6"
+
+services:
+  redis:
+    build: ./redis
+    volumes:
+      - ${DATA_PATH_HOST}/redis:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - backend
+    restart: always
+  laravel-echo-server:
+    build:
+      context: ./laravel-echo-server
+    volumes:
+      - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json
+      - ./laravel-echo-server/laravel-echo-server.json:/usr/src/app/laravel-echo-server.json
+      - ./nginx/ssl:/ssl
+    ports:
+      - "${LARAVEL_ECHO_PORT}:6001"
+    networks:
+      - backend
+    extra_hosts:
+      - "tpshousing.local:192.168.99.100"
+    restart: always
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      #- ../logs/nginx:/var/log/nginx
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/location:/etc/nginx/locations
+      - ./nginx/ssl/:/etc/nginx/ssl
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - backend
+    depends_on: 
+      - php-fpm
+    restart: always
+  php-fpm:
+    build: 
+      context: ./php-fpm
+    volumes:
+      - ./php-fpm/php-default.ini:/usr/local/etc/php/php.ini
+      - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug-dev.ini
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      #- ../logs/xdebug/xdebug.log:/tmp/xdebug/xdebug.log
+    networks:
+      - backend
+    restart: always    
+  php-worker:
+    build:
+      context: ./php-worker
+    volumes:
+      - ./php-fpm/php-default.ini:/usr/local/etc/php/php.ini
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      - ./php-worker/supervisord.d:/etc/supervisord.d
+    networks:
+      - backend
+  mysql:
+    build:
+      context: ./mysql
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - laravel_mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+    restart: always
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
+    networks:
+      - backend
+    restart: always
+
+volumes:
+  laravel_mysql:
+
+networks:
+  backend:
+    driver: ${NETWORKS_DRIVER}

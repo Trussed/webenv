@@ -1,0 +1,30 @@
+{
+	"authHost": "https://tpshousing.local",
+	"authEndpoint": "/broadcasting/auth",
+	"clients": [
+		{
+			"appId": "36d48b7638493957",
+			"key": "8e09525dd51f58a3fa12208f1b247fc3"
+		}
+	],
+	"database": "redis",
+	"databaseConfig": {
+		"redis": {
+			"port": "6379",
+			"host": "redis"
+		}
+	},
+	"devMode": true,
+	"host": null,
+	"port": "6001",
+	"protocol": "https",
+	"socketio": {},
+	"sslCertPath": "/ssl/crt/master.crt",
+	"sslKeyPath": "/ssl/key/master.key",	
+	"apiOriginAllow": {
+		"allowCors": false,
+		"allowOrigin": "",
+		"allowMethods": "",
+		"allowHeaders": ""
+	}
+}

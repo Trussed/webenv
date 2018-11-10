@@ -21,8 +21,6 @@ services:
       - "${LARAVEL_ECHO_PORT}:6001"
     networks:
       - backend
-    extra_hosts:
-      - "tpshousing.local:192.168.99.100"
     restart: always
   nginx:
     build:

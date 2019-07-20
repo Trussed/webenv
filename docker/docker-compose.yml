@@ -1,4 +1,4 @@
-version: "3.6"
+version: "3.7"
 
 services:
   redis:
@@ -60,6 +60,7 @@ services:
       - ./php-worker/supervisord.d:/etc/supervisord.d
     networks:
       - backend
+    restart: always
   mysql:
     build:
       context: ./mysql

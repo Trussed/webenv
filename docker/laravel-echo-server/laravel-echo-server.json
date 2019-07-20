@@ -1,5 +1,5 @@
 {
-	"authHost": "https://tpshousing.local",
+	"authHost": "http://nginx",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
@@ -17,7 +17,7 @@
 	"devMode": true,
 	"host": null,
 	"port": "6001",
-	"protocol": "https",
+	"protocol": "http",
 	"socketio": {},
 	"sslCertPath": "/ssl/crt/master.crt",
 	"sslKeyPath": "/ssl/key/master.key",	

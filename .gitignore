@@ -1,2 +1,3 @@
 .vscode
-/apps
+/docker/.env
+/nginx/sites/*
